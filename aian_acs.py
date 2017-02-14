@@ -15,7 +15,7 @@ start = dt.datetime.now().strftime("%Y/%m/%d %H:%M")
 
 print "Start Time", start 
 
-cols = ["sex","agep","cit","hins1","hins2","hins3","hins4","hins5","hins6","hins7","rac1p","rac3p05","rac3p12","st","puma10","pwgtp"]
+cols = ["sex","agep","cit","hins1","hins2","hins3","hins4","hins5","hins6","hins7","rac1p","rac2p05","rac2p12","racaian","rac3p05","rac3p12","st","puma10","pwgtp"]
 
 csvs = glob.glob("/Users/bernice/documents/ai_an/data/ss15*.csv")
 
@@ -50,8 +50,8 @@ pums11_15_aian_multi = acs11_15[(acs11_15["RAC3P05"] == 33)   | (acs11_15["RAC3P
 print "Number of people who are AI/AN alone", len(pums11_15_aian_alone.index)
 print "Number of people who are AI/AN and another race", len(pums11_15_aian_multi.index)
 
-pums11_15_aian_alone.to_csv("/Users/bernice/documents/ai_an/data/ss15pus_aian_alone.csv",index = False)
+#pums11_15_aian_alone.to_csv("/Users/bernice/documents/ai_an/data/ss15pus_aian_alone.csv",index = False)
 
-pums11_15_aian_multi.to_csv("/Users/bernice/documents/ai_an/data/ss15pus_aian_multi.csv",index = False)
+#pums11_15_aian_multi.to_csv("/Users/bernice/documents/ai_an/data/ss15pus_aian_multi.csv",index = False)
 
 
