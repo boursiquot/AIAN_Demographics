@@ -17,7 +17,7 @@ start = dt.datetime.now().strftime("%Y/%m/%d %H:%M")
 
 print "Start Time", start 
 
-cols = ["serialno","SEX","AGEP","MAR","CIT","HINS1","HINS2","HINS3","HINS4","HINS5","HINS6","HINS7","RAC1P","RAC2P05","RAC2P12","RACAIAN","RAC3P05","RAC3P12","ST","PUMA10","PWGTP"]
+cols = ["serialno","SEX","AGEP","MAR","CIT","DIS","DEYE","DEAR","DDRS","DOUT","DPHY","DREM","HICOV","PRIVCOV","PUBCOV","HINS1","HINS2","HINS3","HINS4","HINS5","HINS6","HINS7","RAC1P","RAC2P05","RAC2P12","RACAIAN","RAC3P05","RAC3P12","HISP","ST","PUMA10","PWGTP"]
 
 csvs = glob.glob("/Users/bernice/documents/ai_an/data/ss15*.csv")
 
@@ -29,20 +29,18 @@ for i,f in enumerate(csvs):
         acs11_15 = acs11_15.append(tempdf)
 
 
-print "Time elapsed (sec) = diff:1f}".format(diff = end - start)
+# print "Number of observations", len(acs11_15.index)    
 
-print "Number of observations", len(acs11_15.index)    
-
-# Getting a count of the number of AI/AN alone or in combination
+# # Getting a count of the number of AI/AN alone or in combination
 
 
-print "Variable RAC1P",  (acs11_15[(acs11_15["RAC1P"] == 3)  | (acs11_15["RAC1P"] == 4) | (acs11_15["RAC1P"] == 5) | (acs11_15["RAC3P05"] == 34) | (acs11_15["RAC3P12"] == 3)   
-| (acs11_15["RAC3P05"] == 33) | (acs11_15["RAC3P05"] == 35) | (acs11_15["RAC3P05"] == 43) 
-| (acs11_15["RAC3P05"] == 47) | (acs11_15["RAC3P05"] == 64) | (acs11_15["RAC3P05"] == 65) | (acs11_15["RAC3P05"] == 67)
-| (acs11_15["RAC3P12"] == 17) | (acs11_15["RAC3P12"] == 30) | (acs11_15["RAC3P12"] == 39) | (acs11_15["RAC3P12"] == 40) 
-| (acs11_15["RAC3P12"] == 41) | (acs11_15["RAC3P12"] == 60) | (acs11_15["RAC3P12"] == 63)| (acs11_15["RAC3P12"] == 64) 
-| (acs11_15["RAC3P12"] == 79) | (acs11_15["RAC3P12"] == 81) | (acs11_15["RAC3P12"] == 82)| (acs11_15["RAC3P12"] == 84) 
-| (acs11_15["RAC3P12"] == 90) | (acs11_15["RAC3P12"] == 92)]).count()
+# print "Variable RAC1P",  (acs11_15[(acs11_15["RAC1P"] == 3)  | (acs11_15["RAC1P"] == 4) | (acs11_15["RAC1P"] == 5) | (acs11_15["RAC3P05"] == 34) | (acs11_15["RAC3P12"] == 3)   
+# | (acs11_15["RAC3P05"] == 33) | (acs11_15["RAC3P05"] == 35) | (acs11_15["RAC3P05"] == 43) 
+# | (acs11_15["RAC3P05"] == 47) | (acs11_15["RAC3P05"] == 64) | (acs11_15["RAC3P05"] == 65) | (acs11_15["RAC3P05"] == 67)
+# | (acs11_15["RAC3P12"] == 17) | (acs11_15["RAC3P12"] == 30) | (acs11_15["RAC3P12"] == 39) | (acs11_15["RAC3P12"] == 40) 
+# | (acs11_15["RAC3P12"] == 41) | (acs11_15["RAC3P12"] == 60) | (acs11_15["RAC3P12"] == 63)| (acs11_15["RAC3P12"] == 64) 
+# | (acs11_15["RAC3P12"] == 79) | (acs11_15["RAC3P12"] == 81) | (acs11_15["RAC3P12"] == 82)| (acs11_15["RAC3P12"] == 84) 
+# | (acs11_15["RAC3P12"] == 90) | (acs11_15["RAC3P12"] == 92)]).count()
 
 # Count is 312,208
 
@@ -54,9 +52,7 @@ pums11_15_aian  = acs11_15[(acs11_15["RAC1P"] == 3)  | (acs11_15["RAC1P"] == 4) 
 | (acs11_15["RAC3P12"] == 79) | (acs11_15["RAC3P12"] == 81) | (acs11_15["RAC3P12"] == 82) | (acs11_15["RAC3P12"] == 84) 
 | (acs11_15["RAC3P12"] == 90) | (acs11_15["RAC3P12"] == 92) ] 
 
-print "Number of people who are AI/AN", len(pums11_15_aian.index)
-
-## Need to create column for 0 = AI/AN alone and 1 = AI/AN multi
+# print "Number of people who are AI/AN", len(pums11_15_aian.index)
 
 
 def alonemulti(row):
@@ -68,24 +64,19 @@ def alonemulti(row):
 
     return row
 
-pums11_15_aian = pums11_15_aian.apply(alonemulti, axis = 1)
 
 
-df = pd.read_csv("/Users/bernice/documents/ai_an/data/pums11_15_aian.csv", header = 0 )
+# def hi_crosstab (var):
 
-def hi_crosstab (var):
+#     print pd.crosstab(index = df["HINS7"],  columns = var, margins = True)
 
-    print pd.crosstab(index = df["HINS7"],  columns = var, margins = True)
+# hi_crosstab(df["HINS1"])
+# hi_crosstab(df["HINS2"])
+# hi_crosstab(df["HINS3"])
+# hi_crosstab(df["HINS4"])
+# hi_crosstab(df["HINS5"])
+# hi_crosstab(df["HINS6"])
 
-hi_crosstab(df["HINS1"])
-hi_crosstab(df["HINS2"])
-hi_crosstab(df["HINS3"])
-hi_crosstab(df["HINS4"])
-hi_crosstab(df["HINS5"])
-hi_crosstab(df["HINS6"])
-
-
-print df.head()
 
 def health_insurance (row):
 
@@ -115,21 +106,52 @@ def health_insurance (row):
         row["HEALTH_INSURANCE_COUNT"] =  row["HEALTH_INSURANCE_COUNT"] + 1
         row["IHS"]   = 1
 
-    if row["HINS7"] == 1 & row["HINS1"] == 2  & row["HINS2"] == 2  & row["HINS3"] == 2  & row["HINS4"] == 2  & row["HINS5"] == 2 & row["HINS6"] == 2 :
+    if row["HINS7"] == 1 and row["HINS1"] == 2  and row["HINS2"] == 2  and row["HINS3"] == 2  and row["HINS4"] == 2  and row["HINS5"] == 2 and row["HINS6"] == 2 :
         row["IHS_ALONE"] = 1
 
     return row
 
 
-pums11_15_aian = df.apply(health_insurance,axis = 1) ## axis = 0  apply function to each column, axis = 1 apply function to rows
+def disability (row):
+    row["DISABILITY_COUNT"] = 0
 
-print pums11_15_aian.head()
+    if row["DEYE"] == 1:
+        row["DISABILITY_COUNT"] = row["DISABILITY_COUNT"] + 1
+
+    if row["DEAR"] == 1:
+        row["DISABILITY_COUNT"] = row["DISABILITY_COUNT"] + 1
+
+    if row["DDRS"] == 1:
+        row["DISABILITY_COUNT"] = row["DISABILITY_COUNT"] + 1
+
+    if row["DOUT"] == 1:
+        row["DISABILITY_COUNT"] = row["DISABILITY_COUNT"] + 1
+
+    if row["DREM"] == 1:
+        row["DISABILITY_COUNT"] = row["DISABILITY_COUNT"] + 1
+
+    if row["DPHY"] == 1:
+        row["DISABILITY_COUNT"] = row["DISABILITY_COUNT"] + 1
+
+    return row
+
+
+
+pums11_15_aian = pums11_15_aian.apply(alonemulti, axis = 1) ## axis = 0  apply function to each column, axis = 1 apply function to rows
+
+pums11_15_aian = pums11_15_aian.apply(health_insurance, axis = 1) ## axis = 0  apply function to each column, axis = 1 apply function to rows
+
+pums11_15_aian = pums11_15_aian.apply(disability, axis = 1) ## axis = 0  apply function to each column, axis = 1 apply function to rows
 
 pums11_15_aian.to_csv("/Users/bernice/documents/ai_an/data/pums11_15_aian.csv")
+
+print pums11_15_aian.sample(20)
 
 end = dt.datetime.now().strftime("%Y/%m/%d %H:%M")
 
 print "End time", end
+
+print "Time elapsed (sec) = {diff:1f}".format(diff = end - start)
 
 
 

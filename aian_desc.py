@@ -8,4 +8,4 @@ print "Mean Age by AI/AN Alone or Combination", aian_df.groupby("ALONE")["AGEP"]
 
 print "Top 5 States by AI/AN Alone or Combination", aian_df.groupby(["ALONE","ST"])["ST"].count().groupby(level = 0, group_keys = False).nlargest(5)
 
-print "Disabili"
+print "Disability Status", aian_df.groupby()
