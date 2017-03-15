@@ -37,12 +37,32 @@ for i,f in enumerate(csvs):
         acs11_15 = acs11_15.append(tempdf)
 
 
-print acs11_15.head(5)
-
+# print acs11_15.head(5)
 
 # print "Number of observations", len(acs11_15.index)    
 
-print "Number of multirace people", acs11_15["RACNUM"].value_counts()
+# print type(len(acs11_15.index))
+
+
+# multirace_num = acs11_15["RACNUM"].value_counts()
+
+# multirace_pct = (acs11_15["RACNUM"].value_counts()/acs11_15["RACNUM"].value_counts().sum())*100
+
+#print "Number of multirace people", multirace_num, multirace_pct, multirace_blk
+
+def mr (var, title):
+    new_df = acs11_15[(acs11_15[var] == 1)]
+    print title, (new_df["RACNUM"].value_counts()/new_df["RACNUM"].value_counts().sum())*100
+
+mr("RACBLK", "Number of Races Indicated Among Black Population")
+
+mr("RACAIAN", "Number of Races Indicated Among American Indian and Alaska Native Population")
+
+mr("RACWHT", "Number of Races Indicated Among White Population")
+
+mr("RACASN", "Number of Races Indicated Among Asian Population")
+
+mr("RACSOR", "Number of Races Indicated Among Some Other Race Population")
 
 # # Getting a count of the number of AI/AN alone or in combination
 
@@ -57,7 +77,7 @@ print "Number of multirace people", acs11_15["RACNUM"].value_counts()
 
 # Count is 312,208
 
-pums11_15_aian  = acs11_15[(acs11_15["RACAIAN"] == 1)]
+# pums11_15_aian  = acs11_15[(acs11_15["RACAIAN"] == 1)]
 
 # acs11_15[(acs11_15["RAC1P"] == 3)  | (acs11_15["RAC1P"] == 4) | (acs11_15["RAC1P"] == 5) | (acs11_15["RAC3P05"] == 34) | (acs11_15["RAC3P12"] == 3)   
 # | (acs11_15["RAC3P05"] == 33) | (acs11_15["RAC3P05"] == 35) | (acs11_15["RAC3P05"] == 43) 
@@ -67,7 +87,7 @@ pums11_15_aian  = acs11_15[(acs11_15["RACAIAN"] == 1)]
 # | (acs11_15["RAC3P12"] == 79) | (acs11_15["RAC3P12"] == 81) | (acs11_15["RAC3P12"] == 82) | (acs11_15["RAC3P12"] == 84) 
 # | (acs11_15["RAC3P12"] == 90) | (acs11_15["RAC3P12"] == 92) ] 
 
-print "Number of people who are AI/AN", len(pums11_15_aian.index)
+# print "Number of people who are AI/AN", len(pums11_15_aian.index)
 
 
 # def alonemulti(row):
