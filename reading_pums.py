@@ -1,4 +1,3 @@
-import csv
 import numpy as np
 import pandas as pd
 import sys
@@ -6,9 +5,7 @@ import logging as lg
 import time
 import datetime as dt
 import glob
-import urllib2 as url
-from bs4 import BeautifulSoup as bs
-import re
+import xlsxwriter
 
 #data_dict =  "http://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2011-2015.txt"
 
@@ -43,16 +40,15 @@ for i,f in enumerate(csvs):
 
 # print type(len(acs11_15.index))
 
-
-# multirace_num = acs11_15["RACNUM"].value_counts()
-
-# multirace_pct = (acs11_15["RACNUM"].value_counts()/acs11_15["RACNUM"].value_counts().sum())*100
-
-#print "Number of multirace people", multirace_num, multirace_pct, multirace_blk
+# writer = pd.ExcelWriter("/Users/bernice/documents/ai_an/ouput/multirace_pop.xlsx", engine = "xlsxwriter")
 
 def mr (var, title):
     new_df = acs11_15[(acs11_15[var] == 1)]
-    print title, (new_df["RACNUM"].value_counts()/new_df["RACNUM"].value_counts().sum())*100
+    new_df2 = (new_df["RACNUM"].value_counts()/new_df["RACNUM"].value_counts().sum())*100
+    print new_df2, type(new_df2)
+    # new_df2.to_excel(writer, sheet_name = var)
+    # writer.save()
+    # print title, (new_df["RACNUM"].value_counts()/new_df["RACNUM"].value_counts().sum())*100
 
 mr("RACBLK", "Number of Races Indicated Among Black Population")
 
