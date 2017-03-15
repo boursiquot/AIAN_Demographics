@@ -38,27 +38,89 @@ for i,f in enumerate(csvs):
 
 # print "Number of observations", len(acs11_15.index)    
 
-# print type(len(acs11_15.index))
 
-# writer = pd.ExcelWriter("/Users/bernice/documents/ai_an/ouput/multirace_pop.xlsx", engine = "xlsxwriter")
+aian = pd.DataFrame()
+blk  = pd.DataFrame()
+wht  = pd.DataFrame()
+asn  = pd.DataFrame()
+nhpi = pd.DataFrame()
+sor  = pd.DataFrame()
 
-def mr (var, title):
-    new_df = acs11_15[(acs11_15[var] == 1)]
-    new_df2 = (new_df["RACNUM"].value_counts()/new_df["RACNUM"].value_counts().sum())*100
-    print new_df2, type(new_df2)
-    # new_df2.to_excel(writer, sheet_name = var)
+
+
+# for i in ("RACAIAN", "RACBLK", "RACWHT", "RACASN", "RACSOR"):
+#     new_df  = acs11_15[(acs11_15[i] == 1)]
+#     new_df2 = (new_df["RACNUM"].value_counts()/new_df["RACNUM"].value_counts().sum())*100
+#     for j in (aian, blk, wht, asn, sor):
+#         j = new_df2.to_frame()
+
+aian = acs11_15[(acs11_15["RACAIAN"] == 1)]
+blk  = acs11_15[(acs11_15["RACBLK"] == 1)]
+wht  = acs11_15[(acs11_15["RACWHT"] == 1)]
+asn  = acs11_15[(acs11_15["RACASN"] == 1)]
+nhpi  = acs11_15[(acs11_15["RACNHPI"] == 1)]
+sor  = acs11_15[(acs11_15["RACSOR"] == 1)]
+
+aian2 =  (aian["RACNUM"].value_counts()/aian["RACNUM"].value_counts().sum())*100
+blk2  =  (blk["RACNUM"].value_counts()/blk["RACNUM"].value_counts().sum())*100
+wht2  =  (wht["RACNUM"].value_counts()/wht["RACNUM"].value_counts().sum())*100
+asn2  =  (asn["RACNUM"].value_counts()/asn["RACNUM"].value_counts().sum())*100
+nhpi2  =  (nhpi["RACNUM"].value_counts()/nhpi["RACNUM"].value_counts().sum())*100
+sor2  =  (sor["RACNUM"].value_counts()/sor["RACNUM"].value_counts().sum())*100
+
+aian3  = aian2.to_frame()
+blk3   = blk2.to_frame()
+wht3   = wht2.to_frame()
+asn3   = asn2.to_frame()
+nhpi3  = nhpi2.to_frame()
+sor3   = sor2.to_frame()
+
+print sor3.columns()
+
+# for i in (aian3, blk3, wht3, asn3, nhpi3, sor3):
+#     i.columns = ["Number of Races", "Percent"]
+
+
+writer  = pd.ExcelWriter("multirace_pop.xlsx", engine = "xlsxwriter")
+
+aian3.to_excel(writer, sheet_name = "AI_AN Population")  
+blk3.to_excel(writer,  sheet_name = "Black Population" ) 
+wht3.to_excel(writer,  sheet_name = "White Population" ) 
+asn3.to_excel(writer,  sheet_name =  "Asian Popluation") 
+nhpi3.to_excel(writer, sheet_name =  "Native Hawaiian Popluation") 
+sor3.to_excel(writer,  sheet_name =  "Some Other Race") 
+
+wkbk  = writer.book
+wksht = writer.sheets["AI_AN Population"] 
+format1 = wkbk.add_format({"num_format":"0%"})
+wksht = set_column("B:B",None, format1)
+
+writer.save()
+
+
+    # wkbk    = xlsxwriter.Workbook("multirace_pop.xlsx")
+    # wksht   = wkbk.add_worksheet()
+    # 
+
+    # df_name.to_excel(writer, sheet_name = var)
+    # # aian.to_excel(writer, sheet_name = "AI_AN Population")
+
     # writer.save()
+    
+   
     # print title, (new_df["RACNUM"].value_counts()/new_df["RACNUM"].value_counts().sum())*100
 
-mr("RACBLK", "Number of Races Indicated Among Black Population")
+# mr(blk, "RACBLK", "Number of Races Indicated Among Black Population")
 
-mr("RACAIAN", "Number of Races Indicated Among American Indian and Alaska Native Population")
+# mr(aian, "RACAIAN", "Number of Races Indicated Among American Indian and Alaska Native Population")
 
-mr("RACWHT", "Number of Races Indicated Among White Population")
+# print blk.head()
 
-mr("RACASN", "Number of Races Indicated Among Asian Population")
+# mr("RACWHT", "Number of Races Indicated Among White Population")
 
-mr("RACSOR", "Number of Races Indicated Among Some Other Race Population")
+# mr("RACASN", "Number of Races Indicated Among Asian Population")
+
+# mr("RACSOR", "Number of Races Indicated Among Some Other Race Population")
 
 # # Getting a count of the number of AI/AN alone or in combination
 
