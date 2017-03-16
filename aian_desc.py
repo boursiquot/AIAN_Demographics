@@ -16,7 +16,7 @@ def counts (var1 , var2, label):
 	#print label, pd.crosstab(index = aian_df["ALONE"], columns = "var", margins = True )
 
 	# print label, pd.crosstab(index = aian_df["ALONE"], columns = var1 , margins = True)	
-	print label, pd.crosstab(aian_df.ALONE, var2).apply(lambda r: (r/r.sum())*100.0, axis = 1)
+	print label, pd.crosstab(aian_df.ALONE, var2).apply(lambda r: (r/r.sum())*100, axis = 1)
 	
 
 counts (aian_df["DIS"], aian_df.DIS, "Disability Status")
@@ -30,3 +30,7 @@ counts (aian_df["PRIVCOV"], aian_df.PRIVCOV, "Private Health Insurance Status")
 counts (aian_df["HICOV"], aian_df.HICOV, "Health Insurance Status")
 
 counts (aian_df["HEALTH_INSURANCE_COUNT"], aian_df.HEALTH_INSURANCE_COUNT, "Number of Health Insurance Plans")
+
+counts (aian_df["IHS"], aian_df.IHS, "Number of People Who List IHS as Insurance")
+
+counts (aian_df["IHS_ALONE"], aian_df.IHS_ALONE, "Number of People with Only IHS as Insurance")
