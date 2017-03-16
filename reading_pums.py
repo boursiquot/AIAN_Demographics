@@ -55,19 +55,6 @@ def alonemulti(row):
     return row
 
 
-
-# # def hi_crosstab (var):
-
-# #     print pd.crosstab(index = pums11_15_aian["HINS7"],  columns = var, margins = True)
-
-# # hi_crosstab(pums11_15_aian["HINS1"])
-# # hi_crosstab(pums11_15_aian["HINS2"])
-# # hi_crosstab(pums11_15_aian["HINS3"])
-# # hi_crosstab(pums11_15_aian["HINS4"])
-# # hi_crosstab(pums11_15_aian["HINS5"])
-# # hi_crosstab(pums11_15_aian["HINS6"])
-
-
 def health_insurance (row):
 
     row["HEALTH_INSURANCE_COUNT"] = 0
@@ -150,6 +137,18 @@ end = dt.datetime.now().strftime("%Y/%m/%d %H:%M")
 print "End time", end
 
 # print "Time elapsed (sec) = {diff:1f}".format(diff = end - start)
+
+
+# # def hi_crosstab (var):
+
+# #     print pd.crosstab(index = pums11_15_aian["HINS7"],  columns = var, margins = True)
+
+# # hi_crosstab(pums11_15_aian["HINS1"])
+# # hi_crosstab(pums11_15_aian["HINS2"])
+# # hi_crosstab(pums11_15_aian["HINS3"])
+# # hi_crosstab(pums11_15_aian["HINS4"])
+# # hi_crosstab(pums11_15_aian["HINS5"])
+# # hi_crosstab(pums11_15_aian["HINS6"])
 
 
 # # Code to get multirace counts and Excel workbook
