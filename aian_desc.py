@@ -24,4 +24,4 @@ counts (aian_df["PUBCOV"], aian_df.PUBCOV, "Public Health Insurance Status")
 
 counts (aian_df["PRIVCOV"], aian_df.PRIVCOV, "Private Health Insurance Status")
 
-counts (aian_df["HICOV"], aian_df.HICOV, "Private Health Insurance Status")
+counts (aian_df["HICOV"], aian_df.HICOV, "Health Insurance Status")
