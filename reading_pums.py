@@ -9,6 +9,13 @@ import glob
 
 #data_dict =  "http://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2011-2015.txt"
 
+logname = "/Users/bernice/documents/ai_an/logs/reading_pums.log"
+
+lg.basicConfig(filename = logname, level = lg.DEBUG, filemode = "w")
+
+logger = lg.getLogger(__name__)
+
+handler = logging.FileHandler
 
 start = dt.datetime.now().strftime("%Y/%m/%d %H:%M")
 
