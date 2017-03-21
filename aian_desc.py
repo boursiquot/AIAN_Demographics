@@ -4,7 +4,7 @@ aian_df = pd.read_csv("/Users/bernice/documents/ai_an/data/pums11_15_aian.csv", 
 
 # print aian_df.sample(5)
 
-print "AI/AN Alone and in Combination", aian_df["ALONE"].value_counts()
+print "AI/AN Alone and in Combination", aian_df.groupby("ALONE")["PWGTP"].sum()
 # print "Mean Age by AI/AN Alone or Combination", aian_df.groupby("ALONE")["AGEP"].mean()
 
 print "Number of Health Insurance Plans", (aian_df["HEALTH_INSURANCE_COUNT"].value_counts(sort = False)/aian_df["HEALTH_INSURANCE_COUNT"].value_counts(sort = False).sum())*100
